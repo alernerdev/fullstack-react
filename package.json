@@ -1,0 +1,46 @@
+{
+  "name": "fullstack-react",
+  "version": "1.0.0",
+  "description": "tinkering with react 16 and full dev tooling",
+  "main": "index.js",
+  "scripts": {
+    "prestart": "babel-node tools/startMessage.js",
+    "start": "babel-node tools/srcServer.js",
+    "lint": "node_modules/.bin/esw webpack.config.* src tools",
+    "lint:watch": "npm run lint -- --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alernerdev/fullstack-react.git"
+  },
+  "keywords": [
+    "react",
+    "router",
+    "fullstack"
+  ],
+  "author": "Alex Lerner <alernerdev@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alernerdev/fullstack-react/issues"
+  },
+  "homepage": "https://github.com/alernerdev/fullstack-react#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
+    "bootstrap": "^3.3.7",
+    "colors": "^1.1.2",
+    "eslint": "^4.14.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-react": "^7.5.1",
+    "eslint-watch": "^3.1.3",
+    "open": "0.0.5",
+    "webpack": "^3.10.0"
+  },
+  "dependencies": {
+    "express": "^4.16.2",
+    "save-dev": "^2.0.0"
+  }
+}

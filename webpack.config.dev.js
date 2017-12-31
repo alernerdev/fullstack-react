@@ -1,13 +1,14 @@
 import webpack from 'webpack';
+import path from 'path';
 
 export default {
 	devtool: 'inline-source-map',
-	entry: [
-		'./src/index'
-	],
+	entry: {
+        main: path.resolve(__dirname, 'src/index')
+    },
 	target: 'web',
 	output: {
-		path: __dirname + '/dist', // physical files are output by the prod build only
+		path: path.resolve(__dirname, '/dist'),
 		publicPath: '/',
 		filename: 'bundle.js'
 	},

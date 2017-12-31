@@ -1,1 +1,2 @@
-console.log('hello from index'); // eslint-disable-line no-console
+/*eslint-disable no-console*/
+console.log("hey there");

@@ -15,7 +15,8 @@ export default {
 	plugins:[],
     module: {
         rules: [
-            { test: /\.js$/, exclude: /node_modules/, loaders: ['babel-loader'] },
+			{ test: /\.js$/, exclude: /node_modules/, loaders: ['babel-loader'] },
+			{ test: /\.jsx$/, exclude: /node_modules/, loader: ['babel-loader'] },
             { test: /\.css$/, loaders: ['style-loader', 'css-loader'] }
         ]
     }

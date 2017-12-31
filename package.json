@@ -9,8 +9,8 @@
     "open:src": "babel-node tools/srcServer.js",
     "lint": "node_modules/.bin/esw webpack.config.* src tools",
     "lint:watch": "npm run lint -- --watch",
-	"test": "mocha --reporter progress tools/testSetup.js \"src/**/*.test.js\"",
-	"test:watch":"npm run test -- --watch"
+    "test": "mocha --reporter progress tools/testSetup.js \"src/**/*.test.js\"",
+    "test:watch": "npm run test -- --watch"
   },
   "repository": {
     "type": "git",
@@ -32,6 +32,7 @@
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
     "babel-register": "^6.26.0",
     "bootstrap": "^3.3.7",
     "colors": "^1.1.2",
@@ -44,11 +45,13 @@
     "mocha": "^4.1.0",
     "npm-run-all": "^4.1.2",
     "open": "0.0.5",
+    "semantic-ui": "^2.2.13",
     "webpack": "^3.10.0",
     "webpack-dev-middleware": "^2.0.3"
   },
   "dependencies": {
     "express": "^4.16.2",
-    "save-dev": "^2.0.0"
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0"
   }
 }

@@ -4,15 +4,10 @@ import './productsSeed';
 
 /*global ProductSeed */
 class ProductList extends React.Component {
-	constructor(props) {
-		super(props);
-
-		this.handleProductUpVote = this.handleProductUpVote.bind(this);
-
-		// start out with empty array
-		this.state = {
-			products: []
-		}
+	// constructor not needed to simply initialize state
+	//start out with empty array
+	state = {
+		products: []
 	}
 
 	componentDidMount() {

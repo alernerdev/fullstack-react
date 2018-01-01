@@ -3,16 +3,12 @@ import ReactDOM from 'react-dom';
 import './productsSeed';
 
 /*global ProductSeed */
+
 class ProductList extends React.Component {
-	constructor(props) {
-		super(props);
-
-		this.handleProductUpVote = this.handleProductUpVote.bind(this);
-
-		// start out with empty array
-		this.state = {
-			products: []
-		}
+	// constructor not needed to simply initialize state
+	//start out with empty array
+	state = {
+		products: []
 	}
 
 	componentDidMount() {
@@ -20,7 +16,8 @@ class ProductList extends React.Component {
 		this.setState({products : ProductSeed.products});
 	}
 
-	handleProductUpVote(productId) {
+	// no need to bind this here. Using plugin
+	handleProductUpVote = (productId)  => {
 		const nextProducts = this.state.products.map((product)=> {
 			if (product.id === productId) {
 				return Object.assign({}, product, {
@@ -36,8 +33,9 @@ class ProductList extends React.Component {
 		})
 	}
 
-	// get a sorted by votes new product list
-		render() {
+	render() {
+		// get a sorted by votes new product list
+		// as the products get upvoted, it changes the state which forces a re-render
 		const products = this.state.products.sort((a, b) => (
 			b.votes - a.votes
 		));
@@ -67,14 +65,8 @@ class ProductList extends React.Component {
  }
 
 class Product extends React.Component {
-	constructor(props) {
-		super(props);
-
-		// non-react functions need to e bound in es6
-		this.handleUpVote = this.handleUpVote.bind(this);
-	}
-
-	handleUpVote() {
+	// no need to bind this here. Using plugin
+	handleUpVote = () => {
 		this.props.onVote(this.props.id);
 	}
 

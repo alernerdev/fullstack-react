@@ -5,8 +5,13 @@ import './productsSeed';
 /*global ProductSeed */
 class ProductList extends React.Component {
 	render() {
-		// generate a new array of react Product isntances
-		const productComponents = ProductSeed.products.map((product) => (
+		// get a sorted by votes new product list
+		const products = ProductSeed.products.sort((a, b) => (
+			b.votes - a.votes
+		));
+
+		// generate an array of react Product isntances
+		const productComponents = products.map((product) => (
 			/*need to generate unique key per list for react framework*/
 			<Product
 				key={'product-' + product.id}

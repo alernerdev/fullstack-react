@@ -5,18 +5,24 @@ import './productsSeed';
 /*global ProductSeed */
 class ProductList extends React.Component {
 	render() {
-		const product = ProductSeed.products[0];
+		// generate a new array of react Product isntances
+		const productComponents = ProductSeed.products.map((product) => (
+			/*need to generate unique key per list for react framework*/
+			<Product
+				key={'product-' + product.id}
+				id={product.id}
+				title={product.title}
+				description={product.description}
+				url={product.url}
+				votes={product.votes}
+				submitterAvatarUrl={product.submitterAvatarUrl}
+				productImageUrl={product.productImageUrl}
+			/>
+		));
+
 		return (
 			<div className='ui unstackable items'>
-				<Product
-					id={product.id}
-					title={product.title}
-					description={product.description}
-					url={product.url}
-					votes={product.votes}
-					submitterAvatarUrl={product.submitterAvatarUrl}
-					productImageUrl={product.productImageUrl}
-				/>
+				{productComponents}
 			</div>
 		);
 	}

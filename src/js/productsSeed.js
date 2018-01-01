@@ -1,5 +1,13 @@
+// this is needed for webpack to pull the images in
 import aquaImg from '../images/products/image-aqua.png';
+import roseImg from '../images/products/image-rose.png';
+import steelImg from '../images/products/image-steel.png';
+import yellowImg from '../images/products/image-yellow.png';
+
 import danielImg from '../images/avatars/daniel.jpg';
+import kristyImg from '../images/avatars/kristy.png';
+import veronikaImg from '../images/avatars/veronika.jpg';
+import mollyImg from '../images/avatars/molly.png';
 
 window.ProductSeed = (function () {
 	function generateVoteCount() {
@@ -22,8 +30,8 @@ const products = [
 		description: 'Earn points when your favorite politicians pass legislation.',
 		url: '#',
 		votes: generateVoteCount(),
-		submitterAvatarUrl: 'images/avatars/kristy.png',
-		productImageUrl: 'images/products/image-rose.png',
+		submitterAvatarUrl: kristyImg,
+		productImageUrl: roseImg,
     },
     {
 		id: 3,
@@ -31,8 +39,8 @@ const products = [
 		description: 'We already have your measurements and shipping address.',
 		url: '#',
 		votes: generateVoteCount(),
-		submitterAvatarUrl: 'images/avatars/veronika.jpg',
-		productImageUrl: 'images/products/image-steel.png',
+		submitterAvatarUrl: veronikaImg,
+		productImageUrl: steelImg,
     },
     {
 		id: 4,
@@ -40,8 +48,8 @@ const products = [
 		description: 'High-minded or absent-minded? You decide.',
 		url: '#',
 		votes: generateVoteCount(),
-		submitterAvatarUrl: 'images/avatars/molly.png',
-		productImageUrl: 'images/products/image-yellow.png',
+		submitterAvatarUrl: mollyImg,
+		productImageUrl: yellowImg
     },
   ];
 

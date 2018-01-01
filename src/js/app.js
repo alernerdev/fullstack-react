@@ -4,13 +4,27 @@ import './productsSeed';
 
 /*global ProductSeed */
 class ProductList extends React.Component {
+	constructor(props) {
+		super(props);
+
+		// start out with empty array
+		this.state = {
+			products: []
+		}
+	}
+
+	componentDidMount() {
+		// this will trigger re-render
+		this.setState({products : ProductSeed.products});
+	}
+
 	handleProductUpVote(productId) {
 		console.log('product id is ' +productId);
 	}
 
-	render() {
-		// get a sorted by votes new product list
-		const products = ProductSeed.products.sort((a, b) => (
+	// get a sorted by votes new product list
+		render() {
+		const products = this.state.products.sort((a, b) => (
 			b.votes - a.votes
 		));
 

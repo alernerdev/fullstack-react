@@ -7,6 +7,8 @@ class ProductList extends React.Component {
 	constructor(props) {
 		super(props);
 
+		this.handleProductUpVote = this.handleProductUpVote.bind(this);
+
 		// start out with empty array
 		this.state = {
 			products: []
@@ -19,7 +21,19 @@ class ProductList extends React.Component {
 	}
 
 	handleProductUpVote(productId) {
-		console.log('product id is ' +productId);
+		const nextProducts = this.state.products.map((product)=> {
+			if (product.id === productId) {
+				return Object.assign({}, product, {
+					votes: product.votes + 1
+				});
+			}
+			else {
+				return product;
+			}
+		});
+		this.setState({
+			products: nextProducts
+		})
 	}
 
 	// get a sorted by votes new product list

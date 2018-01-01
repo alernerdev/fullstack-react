@@ -19,8 +19,6 @@ export default {
 			{ test: /\.jsx$/, exclude: /node_modules/, loader: ['babel-loader'] },
 			{ test: /\.css$/, loaders: ['style-loader', 'css-loader'] },
 			{test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: 'url-loader?limit=10000&mimetype=application/octet-stream'},
-			//{ test: /\.woff$/, loader: 'url-loader?limit=65000&mimetype=application/font-woff&name=public/fonts/[name].[ext]' },
-			//{ test: /\.woff2$/, loader: 'url-loader?limit=65000&mimetype=application/font-woff2&name=public/fonts/[name].[ext]' },
 			{
 				test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
 				use: [
@@ -42,7 +40,7 @@ export default {
 					loader: 'url-loader',
 					options: {
 						limit: 6000,
-						name: './src/images/products/[name].[ext]'
+						name: 'src/images/[name].[ext]'
 					}
 				}]
 			},

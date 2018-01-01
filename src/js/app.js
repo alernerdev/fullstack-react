@@ -4,6 +4,10 @@ import './productsSeed';
 
 /*global ProductSeed */
 class ProductList extends React.Component {
+	handleProductUpVote(productId) {
+		console.log('product id is ' +productId);
+	}
+
 	render() {
 		// get a sorted by votes new product list
 		const products = ProductSeed.products.sort((a, b) => (
@@ -22,6 +26,7 @@ class ProductList extends React.Component {
 				votes={product.votes}
 				submitterAvatarUrl={product.submitterAvatarUrl}
 				productImageUrl={product.productImageUrl}
+				onVote={this.handleProductUpVote}
 			/>
 		));
 
@@ -34,6 +39,17 @@ class ProductList extends React.Component {
  }
 
 class Product extends React.Component {
+	constructor(props) {
+		super(props);
+
+		// non-react functions need to e bound in es6
+		this.handleUpVote = this.handleUpVote.bind(this);
+	}
+
+	handleUpVote() {
+		this.props.onVote(this.props.id);
+	}
+
 	render() {
 		return (
 			<div className='item'>
@@ -42,7 +58,9 @@ class Product extends React.Component {
 				</div>
 				<div className='middle aligned content'>
 					<div className='header'>
-						<a><i className='large caret up icon' /></a>
+						<a onClick={this.handleUpVote}>
+							<i className='large caret up icon' />
+						</a>
 						{this.props.votes}
 					</div>
 					<div className='description'>

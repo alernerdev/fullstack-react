@@ -1,23 +1,40 @@
 import webpack from 'webpack';
 import path from 'path';
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
+
+const extractCSS = new ExtractTextPlugin('alexstyle.css');
 
 export default {
 	devtool: 'inline-source-map',
 	entry: {
+		vendorcss: path.resolve(__dirname, 'src/vendorcss'),
         main: path.resolve(__dirname, 'src/index')
     },
 	target: 'web',
 	output: {
 		path: path.resolve(__dirname, '/dist'),
 		publicPath: '/',
-		filename: 'bundle.js'
+		filename: '[name].bundle.js'
 	},
-	plugins:[],
+	plugins:[
+		extractCSS,
+	],
     module: {
         rules: [
 			{ test: /\.js$/, exclude: /node_modules/, loaders: ['babel-loader'] },
 			{ test: /\.jsx$/, exclude: /node_modules/, loader: ['babel-loader'] },
-			{ test: /\.css$/, loaders: ['style-loader', 'css-loader'] },
+			{ test: /\.css$/, loaders: ['style-loader', 'css-loader'] },/*
+			{
+				test: /\.css$/,
+                use: extractCSS.extract({
+                    use : [
+                        {
+                        loader: 'css-loader',
+                        // sourceMap setting is ignored when devtool is configured higher up
+                        //options: { sourceMap: true }
+                    }]
+                })
+			},*/
 			{test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: 'url-loader?limit=10000&mimetype=application/octet-stream'},
 			{
 				test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,

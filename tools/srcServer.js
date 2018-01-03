@@ -13,9 +13,6 @@ app.use(require('webpack-dev-middleware')(compiler, {
     publicPath: config.output.publicPath
 }));
 
-console.log(__dirname);
-app.use(express.static(__dirname + '/dist'));
-
 app.get('*', function(req, res) {
 	console.log('path '+ req.path);
 	res.sendFile(path.join(__dirname + '/../src/index.html'));

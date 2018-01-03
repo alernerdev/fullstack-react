@@ -2,7 +2,7 @@ import webpack from 'webpack';
 import path from 'path';
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
-const extractCSS = new ExtractTextPlugin(path.resolve(__dirname, 'dist/alexstyle.css'));
+const extractCSS = new ExtractTextPlugin('[name].bundle.css');
 
 // vendorcss: path.resolve(__dirname, 'src/vendorcss'),
 

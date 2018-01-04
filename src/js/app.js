@@ -5,11 +5,10 @@ import './productsSeed';
 /*global ProductSeed */
 
 class ProductList extends React.Component {
-	// constructor not needed to simply initialize state
 	//start out with empty array
 	state = {
 		products: []
-	}
+	};
 
 	componentDidMount() {
 		// this will trigger re-render
@@ -30,7 +29,7 @@ class ProductList extends React.Component {
 		});
 		this.setState({
 			products: nextProducts
-		})
+		});
 	}
 
 	render() {

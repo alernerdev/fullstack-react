@@ -1,20 +1,18 @@
-import webpack from 'webpack';
+/* running production deployment out of dist directory */
+
 import express from 'express';
-import config from '../webpack.config.dev';
 import open from 'open';
 import path from 'path';
+import compression from 'compression';
 
 const app = express();
 const port = 3000;
-const compiler = webpack(config);
 
-app.use(require('webpack-dev-middleware')(compiler, {
-	noInfo: false,
-    publicPath: config.output.publicPath
-}));
+app.use(compression());
+app.use(express.static('dist'));
 
 app.get('*', function(req, res) {
-	res.sendFile(path.join(__dirname + '/../src/index.html'));
+	res.sendFile(path.join(__dirname + '/../dist/index.html'));
 });
 
 

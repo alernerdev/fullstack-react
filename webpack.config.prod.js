@@ -7,14 +7,15 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 const extractCSS = new ExtractTextPlugin('[name].[contenthash].bundle.css');
 
 const GLOBALS = {
-	'process.env.NODE_ENV': JSON.stringify('development'),
+	'process.env.NODE_ENV': JSON.stringify('production'),
 	__DEV__: false
   };
 
 export default {
 	devtool: 'source-map',
 	entry: {
-        main: path.resolve(__dirname, 'src/index')
+        main: path.resolve(__dirname, 'src/index'),
+        vendor: ['react', 'react-dom']
     },
 	target: 'web',
 	output: {
@@ -48,6 +49,9 @@ export default {
 			inject: 'body',
 			trackJSToken: '21981c7d5c924151bc538a66e95cfc22'
 			/* when injecting scripts into the head, the body is not ready yet, and trying to do GetElementById doesnt work */
+		}),
+		new webpack.optimize.CommonsChunkPlugin({
+			name: 'common' // Specify the common bundle's name.
 		}),
 		//  Minify JS
 		new webpack.optimize.UglifyJsPlugin({ sourceMap: true }),

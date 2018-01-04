@@ -1,10 +1,5 @@
 import webpack from 'webpack';
 import path from 'path';
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
-
-const extractCSS = new ExtractTextPlugin('[name].bundle.css');
-
-// vendorcss: path.resolve(__dirname, 'src/vendorcss'),
 
 export default {
 	devtool: 'inline-source-map',
@@ -18,22 +13,12 @@ export default {
 		filename: '[name].bundle.js'
 	},
 	plugins:[
-		extractCSS,
 	],
     module: {
         rules: [
 			{ test: /\.js$/, exclude: /node_modules/, loaders: ['babel-loader'] },
 			{ test: /\.jsx$/, exclude: /node_modules/, loader: ['babel-loader'] },
-			//{ test: /\.css$/, loaders: ['style-loader', 'css-loader'] },
-			{
-				test: /\.css$/,
-                use: extractCSS.extract({
-						fallback: "style-loader",
-                        use: 'css-loader'
-                        // sourceMap setting is ignored when devtool is configured higher up
-                        //options: { sourceMap: true }
-                })
-			},
+			{ test: /\.css$/, loaders: ['style-loader', 'css-loader'] },
 			{test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: 'url-loader?limit=10000&mimetype=application/octet-stream'},
 			{
 				test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,

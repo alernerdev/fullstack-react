@@ -4,10 +4,10 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 import WebpackMd5Hash from 'webpack-md5-hash';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 
-const extractCSS = new ExtractTextPlugin('[name].bundle.css');
+const extractCSS = new ExtractTextPlugin('[name].[contenthash].bundle.css');
 
 const GLOBALS = {
-	'process.env.NODE_ENV': JSON.stringify('production'),
+	'process.env.NODE_ENV': JSON.stringify('development'),
 	__DEV__: false
   };
 
@@ -18,19 +18,20 @@ export default {
     },
 	target: 'web',
 	output: {
-		path: path.resolve(__dirname, '/dist'),
+		path: path.resolve(__dirname, 'dist'),
 		publicPath: '/',
-		filename: '[name].bundle.js'
+		filename: '[name].[chunkhash].bundle.js'
 	},
 	plugins:[
 		// Hash the files using MD5 so that their names change when the content changes.
-		//new WebpackMd5Hash(),
+		new WebpackMd5Hash(),
 		// Tells React to build in prod mode. https://facebook.github.io/react/downloads.html
 		new webpack.DefinePlugin(GLOBALS),
 		extractCSS,
-		// Generate HTML file that contains references to generated bundles. See here for how this works: https://github.com/ampedandwired/html-webpack-plugin#basic-usage
+		// Generate HTML file that contains references to generated bundles.
+		//See here for how this works: https://github.com/ampedandwired/html-webpack-plugin#basic-usage
 		new HtmlWebpackPlugin({
-				//template: 'src/index.ejs',
+				template: 'src/index.ejs',
 				favicon: 'src/favicon.ico',
 				minify: {
 				removeComments: true,
@@ -44,11 +45,12 @@ export default {
 				minifyCSS: true,
 				minifyURLs: true
 			},
-			inject: true,
-			trackJSToken: ''
+			inject: 'body',
+			trackJSToken: '21981c7d5c924151bc538a66e95cfc22'
+			/* when injecting scripts into the head, the body is not ready yet, and trying to do GetElementById doesnt work */
 		}),
 		//  Minify JS
-		//new webpack.optimize.UglifyJsPlugin({ sourceMap: true }),
+		new webpack.optimize.UglifyJsPlugin({ sourceMap: true }),
 	],
     module: {
         rules: [

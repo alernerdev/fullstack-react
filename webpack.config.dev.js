@@ -4,7 +4,9 @@ import path from 'path';
 export default {
 	devtool: 'inline-source-map',
 	entry: {
-        main: path.resolve(__dirname, 'src/index')
+        main: path.resolve(__dirname, 'src/index'),
+        votingapp: path.resolve(__dirname, 'src/voting/index'),
+        timersapp: path.resolve(__dirname, 'src/timers/index')
     },
 	target: 'web',
 	output: {
@@ -41,7 +43,7 @@ export default {
 					loader: 'url-loader',
 					options: {
 						limit: 6000,
-						name: 'src/images/[name].[ext]'
+						name: 'src/**/images/[name].[ext]'
 					}
 				}]
 			},

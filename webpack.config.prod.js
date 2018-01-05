@@ -15,6 +15,8 @@ export default {
 	devtool: 'source-map',
 	entry: {
         main: path.resolve(__dirname, 'src/index'),
+        votingapp: path.resolve(__dirname, 'src/voting/index'),
+        timersapp: path.resolve(__dirname, 'src/timers/index'),
         vendor: ['react', 'react-dom']
     },
 	target: 'web',
@@ -92,7 +94,7 @@ export default {
 					loader: 'url-loader',
 					options: {
 						limit: 6000,
-						name: 'src/images/[name].[ext]'
+						name: 'src/**/images/[name].[ext]'
 					}
 				}]
 			},

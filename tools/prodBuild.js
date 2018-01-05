@@ -8,9 +8,10 @@ import colors from 'colors';
 process.env.NODE_ENV = 'production'; // if we are using hot reloading for dev,
 // this assures that Babel dev config doesnt apply
 
-console.log("generating minimfied bundle for production via webpack.  Hold on ....".yellow);
+console.log("generating minified bundle for production via webpack.  Hold on ....".yellow);
 
 webpack(webpackConfig).run((err, stats) => {
+	console.log("entered stats callback after webpack run".yellow);
 	if (err) {
 		console.log(err.bold.red);
 		return 1;

@@ -11,9 +11,19 @@ const port = 3000;
 app.use(compression());
 app.use(express.static('dist'));
 
-app.get('*', function(req, res) {
+app.get('/', function(req, res) {
 	res.sendFile(path.join(__dirname + '/../dist/index.html'));
 });
+
+app.get('/timersapp', function(req, res) {
+	res.sendFile(path.join(__dirname + '/../dist/timersapp.html'));
+});
+
+app.get('/votingapp', function(req, res) {
+	console.log("entered / route");
+	res.sendFile(path.join(__dirname + '/../dist/votingapp.html'));
+});
+
 
 
 app.listen(port, function(err) {

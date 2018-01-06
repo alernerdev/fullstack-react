@@ -9,15 +9,28 @@ const extractCSS = new ExtractTextPlugin('[name].[contenthash].bundle.css');
 const GLOBALS = {
 	'process.env.NODE_ENV': JSON.stringify('production'),
 	__DEV__: false
-  };
+};
+
+const minifyOptions =  {
+	removeComments: true,
+	collapseWhitespace: true,
+	removeRedundantAttributes: true,
+	useShortDoctype: true,
+	removeEmptyAttributes: true,
+	removeStyleLinkTypeAttributes: true,
+	keepClosingSlash: true,
+	minifyJS: true,
+	minifyCSS: true,
+	minifyURLs: true
+};
 
 export default {
 	devtool: 'source-map',
+	context: path.resolve(__dirname, "src"),
 	entry: {
-        main: path.resolve(__dirname, 'src/index'),
-        votingapp: path.resolve(__dirname, 'src/voting/index'),
-        timersapp: path.resolve(__dirname, 'src/timers/index'),
-        vendor: ['react', 'react-dom']
+        votingapp: './votingapp/index.js',
+        //timersapp: './timersapp/timersappindex.js',
+        //vendor: ['react', 'react-dom']
     },
 	target: 'web',
 	output: {
@@ -34,20 +47,11 @@ export default {
 		// Generate HTML file that contains references to generated bundles.
 		//See here for how this works: https://github.com/ampedandwired/html-webpack-plugin#basic-usage
 		new HtmlWebpackPlugin({
-				template: 'src/index.ejs',
-				favicon: 'src/favicon.ico',
-				minify: {
-				removeComments: true,
-				collapseWhitespace: true,
-				removeRedundantAttributes: true,
-				useShortDoctype: true,
-				removeEmptyAttributes: true,
-				removeStyleLinkTypeAttributes: true,
-				keepClosingSlash: true,
-				minifyJS: true,
-				minifyCSS: true,
-				minifyURLs: true
-			},
+			template: 'index.ejs',
+			filename: 'votingapp.html',
+			//filename: 'timersapp.html',
+			favicon: 'favicon.ico',
+			//minify: minifyOptons,
 			inject: 'body',
 			trackJSToken: '21981c7d5c924151bc538a66e95cfc22'
 			/* when injecting scripts into the head, the body is not ready yet, and trying to do GetElementById doesnt work */
@@ -94,7 +98,7 @@ export default {
 					loader: 'url-loader',
 					options: {
 						limit: 6000,
-						name: 'src/**/images/[name].[ext]'
+						name: 'images/[name].[ext]'
 					}
 				}]
 			},

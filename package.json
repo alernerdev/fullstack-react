@@ -13,8 +13,7 @@
     "test:watch": "npm run test -- --watch",
     "clean-dist": "npm run remove-dist && mkdir dist",
     "remove-dist": "node_modules/.bin/rimraf ./dist",
-    "build:html": "babel-node tools/prodBuildHTML.js",
-    "prebuild": "npm-run-all clean-dist test lint build:html",
+    "prebuild": "npm-run-all clean-dist test lint",
     "build": "babel-node tools/prodBuild.js",
     "postbuild": "babel-node tools/distServer.js"
   },
@@ -69,6 +68,7 @@
     "webpack-md5-hash": "0.0.6"
   },
   "dependencies": {
+    "debug-webpack-plugin": "^0.1.0",
     "express": "^4.16.2",
     "react": "^16.2.0",
     "react-dom": "^16.2.0"

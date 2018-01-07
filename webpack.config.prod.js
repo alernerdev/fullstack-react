@@ -28,9 +28,10 @@ export default {
 	devtool: 'source-map',
 	context: path.resolve(__dirname, "src"),
 	entry: {
+        mainapp: './mainapp/index.js',
         votingapp: './votingapp/index.js',
-        //timersapp: './timersapp/timersappindex.js',
-        //vendor: ['react', 'react-dom']
+        timersapp: './timersapp/index.js',
+        vendor: ['react', 'react-dom']
     },
 	target: 'web',
 	output: {
@@ -41,21 +42,46 @@ export default {
 	plugins:[
 		// Hash the files using MD5 so that their names change when the content changes.
 		new WebpackMd5Hash(),
+
 		// Tells React to build in prod mode. https://facebook.github.io/react/downloads.html
 		new webpack.DefinePlugin(GLOBALS),
+
 		extractCSS,
+
 		// Generate HTML file that contains references to generated bundles.
-		//See here for how this works: https://github.com/ampedandwired/html-webpack-plugin#basic-usage
+		//See here for how this works: 	https://github.com/jantimon/html-webpack-plugin/issues/218
 		new HtmlWebpackPlugin({
-			template: 'index.ejs',
+			template: 'templates/votingapp.ejs',
 			filename: 'votingapp.html',
-			//filename: 'timersapp.html',
+			chunks: ['vendor', 'votingapp', 'common'],
 			favicon: 'favicon.ico',
 			//minify: minifyOptons,
 			inject: 'body',
 			trackJSToken: '21981c7d5c924151bc538a66e95cfc22'
 			/* when injecting scripts into the head, the body is not ready yet, and trying to do GetElementById doesnt work */
 		}),
+		new HtmlWebpackPlugin({
+			template: 'templates/timersapp.ejs',
+			filename: 'timersapp.html',
+			chunks: ['vendor', 'timersapp', 'common'],
+			favicon: 'favicon.ico',
+			//minify: minifyOptons,
+			inject: 'body',
+			trackJSToken: '21981c7d5c924151bc538a66e95cfc22'
+			/* when injecting scripts into the head, the body is not ready yet, and trying to do GetElementById doesnt work */
+		}),
+		// main page
+		new HtmlWebpackPlugin({
+			template: 'templates/index.ejs',
+			filename: 'index.html',
+			chunks: ['vendor', 'mainapp', 'common'],
+			favicon: 'favicon.ico',
+			//minify: minifyOptons,
+			inject: 'body',
+			trackJSToken: '21981c7d5c924151bc538a66e95cfc22'
+			/* when injecting scripts into the head, the body is not ready yet, and trying to do GetElementById doesnt work */
+		}),
+
 		new webpack.optimize.CommonsChunkPlugin({
 			name: 'common' // Specify the common bundle's name.
 		}),

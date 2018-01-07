@@ -96,9 +96,6 @@ class Product extends React.Component {
 	}
 }
 
-//var root = document.getElementById('content');
-console.log('document is ' + JSON.stringify(document));
-console.log('body is ' + JSON.stringify(document.body));
 ReactDOM.render(
 	<ProductList />,
 	document.getElementById('content')

@@ -3,10 +3,11 @@ import path from 'path';
 
 export default {
 	devtool: 'inline-source-map',
+	context: path.resolve(__dirname, "src"),
 	entry: {
-        main: path.resolve(__dirname, 'src/index'),
-        votingapp: path.resolve(__dirname, 'src/voting/index'),
-        timersapp: path.resolve(__dirname, 'src/timers/index')
+		mainapp: './mainapp/index.js',
+		votingapp: './votingapp/index.js',
+        timersapp: './timersapp/index.js'
     },
 	target: 'web',
 	output: {
@@ -43,7 +44,7 @@ export default {
 					loader: 'url-loader',
 					options: {
 						limit: 6000,
-						name: 'src/**/images/[name].[ext]'
+						name: 'images/[name].[ext]'
 					}
 				}]
 			},

@@ -11,7 +11,9 @@ export default {
     },
 	target: 'web',
 	output: {
-		path: path.resolve(__dirname, '/dist'),
+		// absolute path
+		path: path.resolve(__dirname, 'dist'),
+		// this is whats used by HTML files when specifying path
 		publicPath: '/',
 		filename: '[name].bundle.js'
 	},

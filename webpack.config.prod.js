@@ -55,7 +55,7 @@ export default {
 			filename: 'votingapp.html',
 			chunks: ['vendor', 'votingapp', 'common'],
 			favicon: 'favicon.ico',
-			//minify: minifyOptons,
+			minify: minifyOptions,
 			inject: 'body',
 			trackJSToken: '21981c7d5c924151bc538a66e95cfc22'
 			/* when injecting scripts into the head, the body is not ready yet, and trying to do GetElementById doesnt work */
@@ -65,7 +65,7 @@ export default {
 			filename: 'timersapp.html',
 			chunks: ['vendor', 'timersapp', 'common'],
 			favicon: 'favicon.ico',
-			//minify: minifyOptons,
+			minify: minifyOptions,
 			inject: 'body',
 			trackJSToken: '21981c7d5c924151bc538a66e95cfc22'
 			/* when injecting scripts into the head, the body is not ready yet, and trying to do GetElementById doesnt work */
@@ -76,7 +76,7 @@ export default {
 			filename: 'index.html',
 			chunks: ['vendor', 'mainapp', 'common'],
 			favicon: 'favicon.ico',
-			//minify: minifyOptons,
+			minify: minifyOptions,
 			inject: 'body',
 			trackJSToken: '21981c7d5c924151bc538a66e95cfc22'
 			/* when injecting scripts into the head, the body is not ready yet, and trying to do GetElementById doesnt work */

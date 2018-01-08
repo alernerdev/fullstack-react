@@ -1,9 +1,12 @@
 window.helpers = (function () {
+  const UIDGenerator = require('uid-generator');
+  const uidgen = new UIDGenerator(); // Default is a 128-bit UID encoded in base58
+
   function newTimer(attrs = {}) {
     const timer = {
       title: attrs.title || 'Timer',
       project: attrs.project || 'Project',
-      id: uuid.v4(), // eslint-disable-line no-undef
+      id: uidgen.generateSync(), // eslint-disable-line no-undef
       elapsed: 0,
     };
 

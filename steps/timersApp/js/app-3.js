@@ -121,7 +121,6 @@ class EditableTimerList extends React.Component {
 				project={timer.project}
 				elapsed={timer.elapsed}
 				runningSince={timer.runningSince}
-				onFormSubmit = {this.props.onFormSubmit}
 			/>);
 		});
 		return (
@@ -138,27 +137,6 @@ class EditableTimer extends React.Component {
 		editFormOpen: false
 	};
 
-	handleEditClick = () => {
-		this.openForm();
-	};
-
-	handleFormClose = () => {
-		this.closeForm();
-	};
-
-	openForm = () => {
-		this.setState({editFormOpen: true});
-	};
-
-	closeForm = () => {
-		this.setState({editFormOpen: flase});
-	};
-
-	handleSubmit = (timer) => {
-		this.props.onFormSubmit();
-		this.closeForm();
-	}
-
 	render() {
 		console.log("I am in EditableTimer and title is " + this.props.title);
 
@@ -168,8 +146,6 @@ class EditableTimer extends React.Component {
 					id={this.props.id}
 					title={this.props.title}
 					project={this.props.project}
-					onFormSubmit={this.handleSubmit}
-					onFormClose={this.handleFormClose}
 				/>
 			);
 		} else {
@@ -180,7 +156,6 @@ class EditableTimer extends React.Component {
 					project={this.props.project}
 					elapsed={this.props.elapsed}
 					runningSince={this.props.runningSince}
-					onEditClick={this.handleEditClick}
 				/>
       );
     }
@@ -206,10 +181,7 @@ class Timer extends React.Component {
 						</h2>
 					</div>
 					<div className='extra content'>
-						<span
-							className='right floated edit icon'
-							onClick={this.props.onEdiClick}
-						>
+						<span className='right floated edit icon'>
 							<i className='edit icon' />
 						</span>
 						<span className='right floated trash icon'>

@@ -227,14 +227,6 @@ class EditableTimer extends React.Component {
 }
 
 class Timer extends React.Component {
-	componentDidMount() {
-		// save the interval id
-		this.forceUpdateInterval = setInterval( () => this.forceUpdate(), 100);
-	}
-
-	componentWillUnmount() {
-		clearInterval(this.forceUpdateInterval);
-	}
 
 	handleTrashClick = () => {
 		console.log("Timer: handleTrashClick");
@@ -242,9 +234,7 @@ class Timer extends React.Component {
 	};
 
 	render() {
-		const elapsedString = 
-			helpers.renderElapsedString(this.props.elapsed, this.props.runningSince);
-			
+		const elapsedString = helpers.renderElapsedString(this.props.elapsed);
 		return (
 			<div className='ui centered card'>
 				<div className='content'>9

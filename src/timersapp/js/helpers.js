@@ -1,4 +1,4 @@
-window.helpers = (function () {
+export default window.helpers = (function () {
   const UIDGenerator = require('uid-generator');
   const uidgen = new UIDGenerator(); // Default is a 128-bit UID encoded in base58
 

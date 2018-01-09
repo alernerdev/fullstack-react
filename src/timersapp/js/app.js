@@ -33,24 +33,59 @@ class TimersDashboard extends React.Component {
 
 	handleCreateFormSubmit = (timer) => {
 		this.createTimer(timer);
-	}
+	};
 
 	createTimer = (timer) => {
 		const t = helpers.newTimer(timer);
 		this.setState({timers: this.state.timers.concat(t)});
 		console.log('added a new timer to the list of total  ' +
 			this.state.timers.length + " timers");
-	}
+	};
 
-	handleEditFormSubmit = () => {
+	handleEditFormSubmit = (attrs) => {
+		this.updateTimer(attrs);
+	};
 
-	}
+	handleTrashClick = (timerId) => {
+    	this.deleteTimer(timerId);
+	};
+
+	/*
+		look through the list of timers looking for a specific id and update it
+		I am generating a new state array of timers rather than modifying an existing state
+	*/
+	updateTimer = (attrs) => {
+		this.setState({
+			timers: this.state.timers.map((timer) => {
+				if (timer.id === attrs.id) {
+					console.log("found a timer match");
+					return Object.assign({}, timer, {
+						title: attrs.title,
+						project: attrs.project
+					});
+				}
+				else {
+					return timer;
+				}
+			})
+		});
+	};
+
+	deleteTimer = (timerId) => {
+		this.setState({
+			timers: this.state.timers.filter(t => t.id !== timerId),
+		});
+	};
 
 	render() {
 		return (
 			<div className='ui three column centered grid'>
 				<div className='column'>
-					<EditableTimerList timers={this.state.timers}/>
+					<EditableTimerList
+						timers={this.state.timers}
+						onFormSubmit={this.handleEditFormSubmit}
+						onTrashClick={this.handleTrashClick}
+					/>
 					<ToggleableTimerForm
 						onFormSubmit = {this.handleCreateFormSubmit}/>
 				</div>
@@ -122,6 +157,7 @@ class EditableTimerList extends React.Component {
 				elapsed={timer.elapsed}
 				runningSince={timer.runningSince}
 				onFormSubmit = {this.props.onFormSubmit}
+				onTrashClick={this.props.onTrashClick}
 			/>);
 		});
 		return (
@@ -139,6 +175,7 @@ class EditableTimer extends React.Component {
 	};
 
 	handleEditClick = () => {
+		console.log("got to handleEditClick");
 		this.openForm();
 	};
 
@@ -151,7 +188,7 @@ class EditableTimer extends React.Component {
 	};
 
 	closeForm = () => {
-		this.setState({editFormOpen: flase});
+		this.setState({editFormOpen: false});
 	};
 
 	handleSubmit = (timer) => {
@@ -181,6 +218,7 @@ class EditableTimer extends React.Component {
 					elapsed={this.props.elapsed}
 					runningSince={this.props.runningSince}
 					onEditClick={this.handleEditClick}
+					onTrashClick={this.props.onTrashClick}
 				/>
       );
     }
@@ -189,11 +227,15 @@ class EditableTimer extends React.Component {
 
 class Timer extends React.Component {
 
+	handleTrashClick = () => {
+		this.props.onTrashClick(this.props.id);
+	};
+
 	render() {
 		const elapsedString = helpers.renderElapsedString(this.props.elapsed);
 		return (
 			<div className='ui centered card'>
-				<div className='content'>
+				<div className='content'>9
 					<div className='header'>
 						{this.props.title}
 					</div>
@@ -208,11 +250,14 @@ class Timer extends React.Component {
 					<div className='extra content'>
 						<span
 							className='right floated edit icon'
-							onClick={this.props.onEdiClick}
+							onClick={this.props.onEditClick}
 						>
 							<i className='edit icon' />
 						</span>
-						<span className='right floated trash icon'>
+						<span
+							className='right floated trash icon'
+							onClick={this.props.handleTrashClick}
+						>
 							<i className='trash icon' />
 						</span>
 					</div>

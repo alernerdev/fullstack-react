@@ -42,8 +42,6 @@ export default class EditableTimer extends React.Component {
 					project={this.props.project}
 					onFormSubmit={this.handleSubmit}
 					onFormClose={this.handleFormClose}
-					onStartClick = {this.props.onStartClick}
-					onStopClick={this.props.onStopClick}
 				/>
 			);
 		} else {
@@ -56,8 +54,10 @@ export default class EditableTimer extends React.Component {
 					runningSince={this.props.runningSince}
 					onEditClick={this.handleEditClick}
 					onTrashClick={this.props.onTrashClick}
+					onStartClick = {this.props.onStartClick}
+					onStopClick={this.props.onStopClick}
 				/>
-      );
-    }
-  }
+			);
+		}
+	}
 }

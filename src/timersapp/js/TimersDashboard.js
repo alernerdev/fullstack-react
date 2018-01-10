@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import helpers from './helpers';
+import timersAppAPI from './api';
 
 import ToggleableTimerForm from './ToggleableTimerForm';
 import EditableTimerList from './EditableTimerList';
@@ -9,28 +10,28 @@ import EditableTimerList from './EditableTimerList';
 const UIDGenerator = require('uid-generator');
 const uidgen = new UIDGenerator(); // Default is a 128-bit UID encoded in base58
 
-
 // container for the list and the + sign at the bottom
 export default class TimersDashboard extends React.Component {
 	state = {
-		timers: [
-			{
-				title: "Practice Squat",
-				project: "Gym Chores",
-				id: uidgen.generateSync(),
-				elapsed: 5456099,
-				runningSince: Date.now()
-			},
-			{
-				title: "Bake Squash",
-				project: "Kitchen Chores",
-				id: uidgen.generateSync(),
-				elapsed: 1273998,
-				runningSince: null
-			}
-		]
+		timers: []
 	};
 
+	componentDidMount() {
+		// initial load from server
+		this.loadTimersFromServer();
+
+		// asking to reload from server every 5 seconds
+		// this is in the event there are multiple tabs writing to server -- a way to keep 
+		// all pages in sync periodically
+		//setInterval(this.loadTimersFromServer, 5000);
+	}
+
+	loadTimersFromServer = () => {
+		timersAppAPI.getTimers((timersFromServer) => {
+			this.setState({timers: timersFromServer});
+		});
+	}
+	
 	handleCreateFormSubmit = (timer) => {
 		this.createTimer(timer);
 	};
@@ -40,6 +41,8 @@ export default class TimersDashboard extends React.Component {
 		this.setState({timers: this.state.timers.concat(t)});
 		console.log('added a new timer to the list of total  ' +
 			this.state.timers.length + " timers");
+
+		timersAppAPI.createTimer(t);
 	};
 
 	handleEditFormSubmit = (attrs) => {
@@ -78,12 +81,14 @@ export default class TimersDashboard extends React.Component {
 		});
 
 		this.setState({	timers: newTimers});
+		timersAppAPI.updateTimer(t);
 	};
 
 	deleteTimer = (timerId) => {
 		this.setState({
 			timers: this.state.timers.filter(t => t.id !== timerId),
 		});
+		timersAppAPI.deleteTimer({id: timerId});
 	};
 
 	startTimer = (timerId) => {
@@ -101,6 +106,10 @@ export default class TimersDashboard extends React.Component {
 				}
 			})
 		});
+
+		timersAppAPI.startTimer(
+			{id: timerId, start: now}
+		);
 	};
 
 	stopTimer = (timerId) => {
@@ -120,6 +129,9 @@ export default class TimersDashboard extends React.Component {
 				}
 			})
 		});
+		timersAppAPI.stopTimer(
+			{id: timerId, stop: now}
+		);
 	}
 
 	render() {

@@ -1,8 +1,8 @@
 /* eslint-disable no-console */
 /* eslint-disable no-undef */
-window.client = (function () {
+export default window.timersAppAPI = (function () {
   function getTimers(success) {
-    return fetch('/api/timers', {
+    return fetch('/timersapp/api/timers', {
       headers: {
         Accept: 'application/json',
       },
@@ -12,7 +12,7 @@ window.client = (function () {
   }
 
   function createTimer(data) {
-    return fetch('/api/timers', {
+    return fetch('/timersapp/api/timers', {
       method: 'post',
       body: JSON.stringify(data),
       headers: {
@@ -23,7 +23,7 @@ window.client = (function () {
   }
 
   function updateTimer(data) {
-    return fetch('/api/timers', {
+    return fetch('/timersapp/api/timers', {
       method: 'put',
       body: JSON.stringify(data),
       headers: {
@@ -34,7 +34,7 @@ window.client = (function () {
   }
 
   function deleteTimer(data) {
-    return fetch('/api/timers', {
+    return fetch('/timersapp/api/timers', {
       method: 'delete',
       body: JSON.stringify(data),
       headers: {
@@ -45,7 +45,7 @@ window.client = (function () {
   }
 
   function startTimer(data) {
-    return fetch('/api/timers/start', {
+    return fetch('/timersapp/api/timers/start', {
       method: 'post',
       body: JSON.stringify(data),
       headers: {
@@ -56,7 +56,7 @@ window.client = (function () {
   }
 
   function stopTimer(data) {
-    return fetch('/api/timers/stop', {
+    return fetch('/timersapp/api/timers/stop', {
       method: 'post',
       body: JSON.stringify(data),
       headers: {

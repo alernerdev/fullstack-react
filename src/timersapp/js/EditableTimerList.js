@@ -7,10 +7,7 @@ import EditableTimer from './EditableTimer';
 // editFormOpen controls which flavor is showm
 export default class EditableTimerList extends React.Component {
 	render() {
-		console.log("rendering editabletimerlist.");
 		const timers = this.props.timers.map((timer) => {
-			console.log("looping over list");
-
 			return(<EditableTimer
 				key = {timer.id}
 				id = {timer.id}

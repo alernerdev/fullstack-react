@@ -33,8 +33,6 @@ export default class EditableTimer extends React.Component {
 	}
 
 	render() {
-		console.log("I am in EditableTimer and title is " + this.props.title);
-
 		if (this.state.editFormOpen) {
 			return (
 				<TimerForm

@@ -37,21 +37,6 @@ app.use("/votingApp", require('./routes/votingAppRoutes'));
 app.use("/timersApp", require('./routes/timersAppRoutes'));
 app.use("/", require('./routes/mainAppRoutes'));
 
-app.get('/', function(req, res) {
-	res.sendFile(path.join(__dirname + '/../dist/index.html'));
-});
-
-app.get('/timersapp', function(req, res) {
-	res.sendFile(path.join(__dirname + '/../dist/timersapp.html'));
-});
-
-app.get('/votingapp', function(req, res) {
-	console.log("entered / route");
-	res.sendFile(path.join(__dirname + '/../dist/votingapp.html'));
-});
-
-
-
 app.listen(port, function(err) {
 	if (err) {
 		console.log(err); //eslint-disable-line no-console

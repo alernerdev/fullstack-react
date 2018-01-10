@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import TimerForm from './TimerForm';
 import Timer from './Timer';
 
 // one timer instance that can be edited
@@ -27,7 +28,7 @@ export default class EditableTimer extends React.Component {
 	};
 
 	handleSubmit = (timer) => {
-		this.props.onFormSubmit();
+		this.props.onFormSubmit(timer);
 		this.closeForm();
 	}
 

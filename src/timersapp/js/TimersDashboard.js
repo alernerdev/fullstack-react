@@ -64,21 +64,20 @@ export default class TimersDashboard extends React.Component {
 		look through the list of timers looking for a specific id and update it
 		I am generating a new state array of timers rather than modifying an existing state
 	*/
-	updateTimer = (attrs) => {
-		this.setState({
-			timers: this.state.timers.map((timer) => {
-				if (timer.id === attrs.id) {
-					console.log("found a timer match");
-					return Object.assign({}, timer, {
-						title: attrs.title,
-						project: attrs.project
-					});
-				}
-				else {
-					return timer;
-				}
-			})
+	updateTimer = (t) => {
+		console.log("update timer " + JSON.stringify(t));
+		var newTimers = this.state.timers.map((timer) => {
+			if (timer.id === t.id) {
+				return Object.assign({}, timer, {
+					title: t.title,
+					project: t.project,
+				});
+			} else {
+				return timer;
+			}
 		});
+
+		this.setState({	timers: newTimers});
 	};
 
 	deleteTimer = (timerId) => {
@@ -105,8 +104,8 @@ export default class TimersDashboard extends React.Component {
 	};
 
 	stopTimer = (timerId) => {
-		const now = Date.now();	
-		
+		const now = Date.now();
+
 		this.setState({
 			timers: this.state.timers.map((timer) => {
 				if (timer.id === timerId) {

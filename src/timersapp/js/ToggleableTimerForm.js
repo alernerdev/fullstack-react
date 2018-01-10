@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import TimerForm from './TimerForm';
+
 // + sign or an open form
 export default class ToggleableTimerForm extends React.Component {
 	state = {

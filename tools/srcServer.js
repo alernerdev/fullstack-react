@@ -2,11 +2,16 @@
 
 import webpack from 'webpack';
 import express from 'express';
-import config from '../webpack.config.dev';
 import open from 'open';
 import path from 'path';
+
+import config from '../webpack.config.dev';
+
 const bodyParser = require('body-parser');
-const fs = require('fs');
+
+const votingAppRouter = express.Router();
+const timersAppRouter = express.Router();
+const mainAppRouter = express.Router();
 
 const app = express();
 const port = 3000;
@@ -22,6 +27,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // __dirname is whatever dir this server is running out of
 
+/* 
+	no-cache
+	no-store
+	must-revalidate
+*/
 app.use((req, res, next) => {
 	res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
 	res.setHeader('Pragma', 'no-cache');
@@ -29,30 +39,9 @@ app.use((req, res, next) => {
 	next();
   });
 
-app.get('/', function(req, res) {
-	console.log("entered / route. ");
-	res.sendFile(path.join(__dirname + '/../src/index.html'));
-});
-
-app.get('/timersapp', function(req, res) {
-	console.log("entered /timersapp route. ");
-	res.sendFile(path.join(__dirname + '/../src/timersapp.html'));
-});
-
-app.get('/votingapp', function(req, res) {
-	console.log("entered /votingapp route. ");
-	res.sendFile(path.join(__dirname + '/../src/votingapp.html'));
-});
-
-const DATA_FILE = path.join(__dirname, '/../src/timersapp/timersdata.json');
-app.get('/timersapp/api/timers', (req, res) => {
-	console.log("entered /api/timers route. ");
-	console.log("data file " + DATA_FILE);
-	fs.readFile(DATA_FILE, (err, data) => {
-		res.setHeader('Cache-Control', 'no-cache');
-		res.json(JSON.parse(data));
-	});
-});
+app.use("/votingApp", require('./routes/votingAppRoutes'));
+app.use("/timersApp", require('./routes/timersAppRoutes'));
+app.use("/", require('./routes/mainAppRoutes'));
 
 app.listen(port, function(err) {
 	if (err) {

@@ -6,8 +6,10 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 
 const extractCSS = new ExtractTextPlugin('[name].[contenthash].bundle.css');
 
+process.env['NODE_ENV'] = 'production';
+
 const GLOBALS = {
-	'process.env.NODE_ENV': JSON.stringify('production'),
+	'process.env.NODE_ENV': JSON.stringify(process.env['NODE_ENV']),
 	__DEV__: false
 };
 
@@ -137,6 +139,10 @@ export default {
 						mimetype: 'image/svg+xml'
 					}
 				}]
+			},
+			{
+				test: /\.json/,
+				loader: "json-loader"
 			}
         ]
     }

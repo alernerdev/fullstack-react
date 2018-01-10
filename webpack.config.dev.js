@@ -1,6 +1,8 @@
 import webpack from 'webpack';
 import path from 'path';
 
+process.env['NODE_ENV'] = 'development';
+
 export default {
 	devtool: 'inline-source-map',
 	context: path.resolve(__dirname, "src"),

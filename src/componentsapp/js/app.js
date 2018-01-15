@@ -6,8 +6,20 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import Switch from './Switch';
+import Counter from './Counter';
+
+class ComponentCollage extends React.Component {
+	render() {
+		return (
+			<div>
+				<Switch />,
+				<Counter initialValue={6}/>
+			</div>
+		);
+	}
+};
 
 ReactDOM.render(
-	<Switch />,
-	document.getElementById('switchcontent')
+	<ComponentCollage />,
+	document.getElementById('content')
 );

@@ -5,3 +5,8 @@
 .switch {
 	background-color: lightsteelblue
 }
+.selection {
+	border-style: groove;
+	border-color: blueviolet;
+	padding: 5px 5px 5px 5px;
+}

@@ -60,8 +60,9 @@ export default class Switch extends React.Component {
 					active={this.state.payMethod === BTC}
 					label='Pay with Bitcoin'
 				/>
-
-				Paying with: {this.state.payMethod}
+				<div className="selection">
+					Paying with: {this.state.payMethod}
+				</div>
 			</div>
 		);
 	}

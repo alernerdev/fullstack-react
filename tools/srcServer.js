@@ -27,7 +27,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // __dirname is whatever dir this server is running out of
 
-/* 
+/*
 	no-cache
 	no-store
 	must-revalidate
@@ -41,6 +41,7 @@ app.use((req, res, next) => {
 
 app.use("/votingApp", require('./routes/votingAppRoutes'));
 app.use("/timersApp", require('./routes/timersAppRoutes'));
+app.use("/componentsApp", require('./routes/componentsAppRoutes'));
 app.use("/", require('./routes/mainAppRoutes'));
 
 app.listen(port, function(err) {

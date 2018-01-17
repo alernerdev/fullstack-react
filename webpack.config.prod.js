@@ -34,6 +34,7 @@ export default {
         votingapp: './votingapp/index.js',
 		timersapp: './timersapp/index.js',
 		componentsapp: './componentsapp/index.js',
+		formapp: './formapp/index.js',
         vendor: ['react', 'react-dom']
     },
 	target: 'web',
@@ -89,6 +90,17 @@ export default {
 			template: 'templates/componentsapp.ejs',
 			filename: 'index.html',
 			chunks: ['vendor', 'componentsapp', 'common'],
+			favicon: 'favicon.ico',
+			minify: minifyOptions,
+			inject: 'body',
+			trackJSToken: '21981c7d5c924151bc538a66e95cfc22'
+			/* when injecting scripts into the head, the body is not ready yet, and trying to do GetElementById doesnt work */
+		}),
+		// forms app
+		new HtmlWebpackPlugin({
+			template: 'templates/formapp.ejs',
+			filename: 'index.html',
+			chunks: ['vendor', 'formapp', 'common'],
 			favicon: 'favicon.ico',
 			minify: minifyOptions,
 			inject: 'body',

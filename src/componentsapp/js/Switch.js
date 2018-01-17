@@ -6,6 +6,7 @@ const BTC = 'Bitcoin';
 const CASH = 'Cash';
 const CHECK = 'Check';
 
+/* Choice here is a stateless component */
 const Choice = function (props) {
 	const cssClasses = [];
 
@@ -17,7 +18,7 @@ const Choice = function (props) {
 	return (
 		<div
 			onClick={props.onClick}
-			className={cssClasses}
+			className={cssClasses.join(" ")}
 		>
 			{props.label} {/* <-- allow any label */}
 		</div>

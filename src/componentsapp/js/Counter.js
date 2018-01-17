@@ -41,7 +41,7 @@ class Counter extends Component {
 			// notice style keyword -- for inline styling
 			<div style={counterStyle} key="counter">
 				{this.state.value}
-        		<p>
+				<p>
 					<button onClick={this.increment}>+</button>
 					<button onClick={this.decrement}>-</button>
 				</p>

@@ -10,7 +10,8 @@ export default {
 		mainapp: './mainapp/index.js',
 		votingapp: './votingapp/index.js',
         timersapp: './timersapp/index.js',
-        componentsapp: './componentsapp/index.js'
+        componentsapp: './componentsapp/index.js',
+        formapp: './formapp/index.js'
     },
 	target: 'web',
 	output: {

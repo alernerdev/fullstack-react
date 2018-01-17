@@ -36,6 +36,7 @@ app.use((req, res, next) => {
 app.use("/votingApp", require('./routes/votingAppRoutes'));
 app.use("/timersApp", require('./routes/timersAppRoutes'));
 app.use("/componentsApp", require('./routes/componentsAppRoutes'));
+app.use("/formApp", require('./routes/formAppRoutes'));
 app.use("/", require('./routes/mainAppRoutes'));
 
 app.listen(port, function(err) {

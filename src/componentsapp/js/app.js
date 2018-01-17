@@ -17,7 +17,7 @@ class ComponentCollage extends React.Component {
 			</div>
 		);
 	}
-};
+}
 
 ReactDOM.render(
 	<ComponentCollage />,

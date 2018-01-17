@@ -3,9 +3,12 @@ import ReactDOM from 'react-dom';
 
 export default class ButtonsDemo extends React.Component {
 
-	onButtonClick = (evt) => {
-		const btn = evt.target;
-		console.log(`The user clicked on ${btn.name}: ${btn.value}`);
+	onGreatClick = (evt) => {
+		console.log('The user clicked button-1: great', evt);
+	};
+
+	onAmazingClick = (evt) => {
+		console.log('The user clicked button-2: amazing', evt);
 	};
 
 	render() {
@@ -16,7 +19,7 @@ export default class ButtonsDemo extends React.Component {
 				<button
 					name='button-1'
 					value='great'
-					onClick={this.onButtonClick}
+					onClick={this.onGreatClick}
 				>
 					Great
 				</button>
@@ -24,7 +27,7 @@ export default class ButtonsDemo extends React.Component {
 				<button
 					name='button-2'
 					value='amazing'
-					onClick={this.onButtonClick}
+					onClick={this.onAmazingClick}
 				>
 					Amazing
 				</button>

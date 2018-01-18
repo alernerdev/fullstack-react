@@ -21,7 +21,7 @@ export default class TimersDashboard extends React.Component {
 		this.loadTimersFromServer();
 
 		// asking to reload from server every 5 seconds
-		// this is in the event there are multiple tabs writing to server -- a way to keep 
+		// this is in the event there are multiple tabs writing to server -- a way to keep
 		// all pages in sync periodically
 		//setInterval(this.loadTimersFromServer, 5000);
 	}
@@ -31,7 +31,7 @@ export default class TimersDashboard extends React.Component {
 			this.setState({timers: timersFromServer});
 		});
 	}
-	
+
 	handleCreateFormSubmit = (timer) => {
 		this.createTimer(timer);
 	};
@@ -39,8 +39,6 @@ export default class TimersDashboard extends React.Component {
 	createTimer = (timer) => {
 		const t = helpers.newTimer(timer);
 		this.setState({timers: this.state.timers.concat(t)});
-		console.log('added a new timer to the list of total  ' +
-			this.state.timers.length + " timers");
 
 		timersAppAPI.createTimer(t);
 	};
@@ -50,12 +48,10 @@ export default class TimersDashboard extends React.Component {
 	};
 
 	handleTrashClick = (timerId) => {
-		console.log("TimerDashboard: handleTrashClick");
 		this.deleteTimer(timerId);
 	};
 
 	handleStartClick = (timerId) => {
-		console.log("TimerDashboard: handleStartClick");
 		this.startTimer(timerId);
 	};
 
@@ -68,7 +64,6 @@ export default class TimersDashboard extends React.Component {
 		I am generating a new state array of timers rather than modifying an existing state
 	*/
 	updateTimer = (t) => {
-		console.log("update timer " + JSON.stringify(t));
 		var newTimers = this.state.timers.map((timer) => {
 			if (timer.id === t.id) {
 				return Object.assign({}, timer, {

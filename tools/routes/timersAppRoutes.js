@@ -65,7 +65,6 @@ router.route('/api/timers')
             res.json({});
         });
     });
-      
 
 router.route('/api/timers/start')
     .post((req, res) => {
@@ -78,7 +77,7 @@ router.route('/api/timers/start')
             res.json({});
         });
     });
-      
+
 router.route('/api/timers/stop')
     .post((req, res) => {
         SAMPLEDATA.forEach((timer) => {
@@ -92,7 +91,5 @@ router.route('/api/timers/stop')
             res.json({});
         });
     });
-      
-      
 
 module.exports = router;

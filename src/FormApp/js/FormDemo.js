@@ -20,11 +20,11 @@ export default class FormDemo extends React.Component {
         const fieldErrors = this.state.fieldErrors;
         const errMessages = Object.keys(fieldErrors).filter((k)=>fieldErrors[k]);
 
-        if (!person.name) 
+        if (!person.name)
             return true;
-        if (!person.email) 
+        if (!person.email)
             return true;
-        if (errMessages.length) 
+        if (errMessages.length)
             return true;
 
         return false;
@@ -55,13 +55,13 @@ export default class FormDemo extends React.Component {
             }
         });
     }
-    
+
     render() {
         return (
             <div>
                 <h1> Sign Up Sheet </h1>
                 <form onSubmit={this.onFormSubmit}>
-                    <Field 
+                    <Field
                         placeholder="Name"
                         name="name"
                         value={this.state.fields.name}
@@ -69,7 +69,7 @@ export default class FormDemo extends React.Component {
                         validate={(val)=> (val ? false : 'Name Required')}
                     />
                     <br/>
-                    <Field 
+                    <Field
                         placeholder="Email"
                         name="email"
                         value={this.state.fields.email}

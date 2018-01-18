@@ -33,15 +33,15 @@ export default class AsyncFormDemo extends React.Component {
         const fieldErrors = this.state.fieldErrors;
         const errMessages = Object.keys(fieldErrors).filter((k)=>fieldErrors[k]);
 
-        if (!person.name) 
+        if (!person.name)
             return true;
-        if (!person.email) 
+        if (!person.email)
             return true;
-        if (!person.course) 
+        if (!person.course)
             return true;
-        if (!person.department) 
+        if (!person.department)
             return true;
-        if (errMessages.length) 
+        if (errMessages.length)
             return true;
 
         return false;
@@ -79,21 +79,21 @@ export default class AsyncFormDemo extends React.Component {
                 });
             })
             .catch((err) => {
-                console.error(err);
+                console.error(err); // eslint-disable-line no-console
                 this.setState({_saveStatus: 'ERROR'});
             });
         }
-    
+
     render() {
         if (this.state._loading) {
-            return <img alt='loading' src='../images/loading.gif' />
+            return (<img alt='loading' src='../images/loading.gif' />);
         }
 
         return (
             <div>
                 <h1> Sign Up Sheet </h1>
                 <form onSubmit={this.onFormSubmit}>
-                    <Field 
+                    <Field
                         placeholder="Name"
                         name="name"
                         value={this.state.fields.name}
@@ -101,7 +101,7 @@ export default class AsyncFormDemo extends React.Component {
                         validate={(val)=> (val ? false : 'Name Required')}
                     />
                     <br/>
-                    <Field 
+                    <Field
                         placeholder="Email"
                         name="email"
                         value={this.state.fields.email}
@@ -130,7 +130,7 @@ export default class AsyncFormDemo extends React.Component {
                             type='submit'
                             disabled={this.validate()}
                         />,
-                    }[this.state._saveStatus]}                      
+                    }[this.state._saveStatus]}
                 </form>
                 <div>
                     <h3>People</h3>

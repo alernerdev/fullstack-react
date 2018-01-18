@@ -15,22 +15,21 @@ export default class Timer extends React.Component {
 	}
 
 	handleStartClick = () => {
-		console.log("Timer: handleStartClick");
+		console.log("Timer: handleStartClick"); // eslint-disable-line no-console
 		this.props.onStartClick(this.props.id);
 	};
-	
+
 	handleStopClick = () => {
-		console.log("Timer: handleStopClick");
-		this.props.onStopClick(this.props.id);		
+		console.log("Timer: handleStopClick"); // eslint-disable-line no-console
+		this.props.onStopClick(this.props.id);
 	};
 
 	handleTrashClick = () => {
-		console.log("Timer: handleTrashClick");
 		this.props.onTrashClick(this.props.id);
 	};
 
 	render() {
-		const elapsedString = 
+		const elapsedString =
 			helpers.renderElapsedString(this.props.elapsed, this.props.runningSince);
 
 		return (

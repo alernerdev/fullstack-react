@@ -1,7 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import apiClient from './api';
+import Core from '../sampleData/core.json';
+import Electives from '../sampleData/electives.json';
+
+const Courses = {
+    core: Core,
+    electives: Electives,
+};
+  
+function apiClient(department) {
+    return {
+      then: function (cb) {
+        setTimeout(() => { cb(Courses[department]); }, 1000);
+      },
+    };
+}
 
 export default class CourseSelect extends React.Component {
     static propTypes = {
@@ -47,6 +61,51 @@ export default class CourseSelect extends React.Component {
         this.setState({course});
         this.props.onChange({name: 'course', value: course});
     }
+
+    renderDepartmentSelect = () => {
+        return (
+            <select
+                onChange={this.onSelectDepartment}
+                value={this.state.department || ''}
+            >
+                <option value=''>
+                    Which department?
+                </option>
+                <option value='core'>
+                    NodeSchool: Core
+                </option>
+                <option value='electives'>
+                    NodeSchool: Electives
+                </option>
+            </select>
+        );
+    };
+
+    renderCourseSelect = () => {
+        if (this.state._loading) {
+          return <img alt='loading' src='/img/loading.gif' />;
+        }
+        if (!this.state.department || !this.state.courses.length) return <span />;
+
+        return (
+            <select
+                onChange={this.onSelectCourse}
+                value={this.state.course || ''}
+            >
+                {[
+                    <option value='' key='course-none'>
+                        Which course?
+                    </option>,
+
+                    ...this.state.courses.map((course, i) => (
+                    <option value={course} key={i}>
+                        {course}
+                    </option>
+                    ))
+                ]}
+            </select>
+        );
+    };
 
     render() {
         return (

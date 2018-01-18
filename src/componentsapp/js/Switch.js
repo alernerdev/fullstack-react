@@ -34,7 +34,7 @@ export default class Switch extends React.Component {
 		return (evt) => {
 			this.setState({
 			payMethod: choice,
-		})};
+		});};
 	};
 
 	render() {

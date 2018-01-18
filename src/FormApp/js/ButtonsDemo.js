@@ -5,7 +5,7 @@ export default class ButtonsDemo extends React.Component {
 
 	onButtonClick = (evt) => {
 		const btn = evt.target;
-		console.log(`The user clicked on ${btn.name}: ${btn.value}`);
+		console.log(`The user clicked on ${btn.name}: ${btn.value}`); // eslint-disable-line no-console
 	};
 
 	render() {

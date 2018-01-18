@@ -5,6 +5,7 @@ import validator from 'validator';
 import Field from './Field';
 import CourseSelect from './CourseSelect';
 import apiClient from './api';
+import loadingImg from '../images/loading.gif';
 
 // using ref gives direct access to the DOM element
 export default class AsyncFormDemo extends React.Component {
@@ -86,7 +87,7 @@ export default class AsyncFormDemo extends React.Component {
 
     render() {
         if (this.state._loading) {
-            return (<img alt='loading' src='../images/loading.gif' />);
+            return (<img alt='loading' src={loadingImg} />);
         }
 
         return (

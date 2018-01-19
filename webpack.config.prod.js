@@ -116,7 +116,16 @@ export default {
 	],
     module: {
         rules: [
-			{ test: /\.js$/, exclude: /node_modules/, loaders: ['babel-loader'] },
+			{
+				test: /\.js$/,
+				include: [
+					path.resolve(__dirname, "src"),
+					path.resolve(__dirname, "tools"),
+					path.resolve(__dirname, "test"),
+					path.resolve(__dirname, 'node_modules/uid-generator') // this pkg was written in ES6
+				],
+				loaders: ['babel-loader']
+			},
 			{ test: /\.jsx$/, exclude: /node_modules/, loader: ['babel-loader'] },
 			//{ test: /\.css$/, loaders: ['style-loader', 'css-loader'] },
 			{

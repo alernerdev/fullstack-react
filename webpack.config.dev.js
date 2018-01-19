@@ -11,7 +11,8 @@ export default {
 		votingapp: './votingapp/index.js',
         timersapp: './timersapp/index.js',
         componentsapp: './componentsapp/index.js',
-        formapp: './formapp/index.js'
+        formapp: './formapp/index.js',
+        listapp: './listapp/index.js'
     },
 	target: 'web',
 	output: {

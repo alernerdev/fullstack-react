@@ -3,6 +3,7 @@ import path from 'path';
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 import WebpackMd5Hash from 'webpack-md5-hash';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
+import colors from 'colors';
 
 const extractCSS = new ExtractTextPlugin('[name].[contenthash].bundle.css');
 
@@ -12,6 +13,8 @@ const GLOBALS = {
 	'process.env.NODE_ENV': JSON.stringify(process.env['NODE_ENV']),
 	__DEV__: false
 };
+
+console.log(`ENV IS ${process.env['NODE_ENV']}`.yellow);
 
 const minifyOptions =  {
 	removeComments: true,
@@ -88,7 +91,7 @@ export default {
 		// components app
 		new HtmlWebpackPlugin({
 			template: 'templates/componentsapp.ejs',
-			filename: 'index.html',
+			filename: 'componentsapp.html',
 			chunks: ['vendor', 'componentsapp', 'common'],
 			favicon: 'favicon.ico',
 			minify: minifyOptions,
@@ -99,7 +102,7 @@ export default {
 		// forms app
 		new HtmlWebpackPlugin({
 			template: 'templates/formapp.ejs',
-			filename: 'index.html',
+			filename: 'formapp.html',
 			chunks: ['vendor', 'formapp', 'common'],
 			favicon: 'favicon.ico',
 			minify: minifyOptions,

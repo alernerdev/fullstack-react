@@ -12,7 +12,7 @@ class ComponentCollage extends React.Component {
 	render() {
 		return (
 			<div>
-				<Switch />,
+				<Switch />
 				<Counter initialValue={6}/>
 			</div>
 		);

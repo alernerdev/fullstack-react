@@ -9,9 +9,11 @@ const DATA_FILE = '../sampleData/timersdata.json';
 
 const router = express.Router();
 
+/* eslint-disable no-console */
+
 router.route('/')
 	.get((req, res) => {
-        var pageName;
+        let pageName;
         (process.env['NODE_ENV'] == 'development') ?
             pageName = path.join(__dirname + '/../../src/timersapp.html'):
             pageName = path.join(__dirname + '/../../dist/timersapp.html') ;
@@ -43,7 +45,7 @@ router.route('/api/timers')
     .delete((req, res) => {
         console.log("received delete timer cmd on the server side");
 
-        var timers = SAMPLEDATA.reduce((memo, timer) => {
+        const timers = SAMPLEDATA.reduce((memo, timer) => {
             if (timer.id === req.body.id) {
               return memo;
             } else {

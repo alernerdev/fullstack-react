@@ -84,7 +84,7 @@ export default class FormDemo extends React.Component {
                     <ul>
                         {/* return li element for each name in the array */}
                         {this.state.people.map(({name, email}, index) => {
-                            return <li key={index}> {name} ({email})</li>
+                            return (<li key={index}> {name} ({email})</li>);
                         })}
                     </ul>
                 </div>

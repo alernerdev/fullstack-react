@@ -8,7 +8,7 @@ const Courses = {
     core: Core,
     electives: Electives,
 };
-  
+
 function apiClient(department) {
     return {
       then: function (cb) {

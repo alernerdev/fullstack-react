@@ -33,7 +33,7 @@ export default class Field extends React.Component {
     render() {
         return (
             <div>
-                <input 
+                <input
                     placeholder={this.props.placeholder}
                     value={this.props.value}
                     onChange={this.onChange}

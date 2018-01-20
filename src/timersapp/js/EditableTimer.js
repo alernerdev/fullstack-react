@@ -11,7 +11,6 @@ export default class EditableTimer extends React.Component {
 	};
 
 	handleEditClick = () => {
-		console.log("got to handleEditClick");
 		this.openForm();
 	};
 

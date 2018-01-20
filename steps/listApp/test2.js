@@ -6,7 +6,7 @@ import List from '../js/List';
 /* eslint-disable no-undef */
 
 describe('ListApp', () => {
-	let wrapper;
+	var wrapper;
 
 	beforeEach(() =>
 	{
@@ -43,7 +43,7 @@ describe('ListApp', () => {
 			const input = wrapper.find('input').first();
 			input.simulate('change', {
 				target: {value: item}
-			});
+			})
 		});
 
 		it('should update state property `item`', () => {
@@ -55,35 +55,19 @@ describe('ListApp', () => {
 			expect(button.props().disabled).toBe(false);
 		});
 
-		describe('and then clears the input', () => {
+		describe('user populates input', () => {
 			const item = "Vancouver";
 			beforeEach(() =>
 			{
 				const input = wrapper.find('input').first();
 				input.simulate('change', {
 					target: {value: ''}
-				});
+				})
 			});
 
 			it('it should disable button', () => {
 				const button = wrapper.find('button').first();
 				expect(button.props().disabled).toBe(true);
-			});
-		});
-
-
-		describe('and then submits the form', () => {
-			beforeEach(() =>
-			{
-				const form = wrapper.find('form').first();
-				form.simulate('submit', {
-					preventDefault: () => {}
-				});
-			});
-
-			it('it should add item to state', () => {
-				const button = wrapper.find('button').first();
-				expect(wrapper.state().items).toContain(item);
 			});
 		});
 	});

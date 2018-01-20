@@ -5,9 +5,11 @@ import path from 'path';
 
 const router = express.Router();
 
+/* eslint-disable no-console */
+
 router.route('/')
 	.get((req, res) => {
-        var pageName;
+        let pageName;
         (process.env['NODE_ENV'] == 'development') ?
             pageName = path.join(__dirname + '/../../src/index.html'):
             pageName = path.join(__dirname + '/../../dist/index.html');

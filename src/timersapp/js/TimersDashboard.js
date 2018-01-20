@@ -64,7 +64,7 @@ export default class TimersDashboard extends React.Component {
 		I am generating a new state array of timers rather than modifying an existing state
 	*/
 	updateTimer = (t) => {
-		var newTimers = this.state.timers.map((timer) => {
+		let newTimers = this.state.timers.map((timer) => {
 			if (timer.id === t.id) {
 				return Object.assign({}, timer, {
 					title: t.title,

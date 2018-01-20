@@ -138,7 +138,7 @@ export default class AsyncFormDemo extends React.Component {
                     <ul>
                         {/* return li element for each name in the array */}
                         {this.state.people.map(({name, email, department, course}, index) => {
-                            return <li key={index}>{[name, email, department, course].join(' - ')}</li>
+                            return (<li key={index}>{[name, email, department, course].join(' - ')}</li>);
                         })}
                     </ul>
                 </div>

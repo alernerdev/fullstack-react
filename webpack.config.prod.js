@@ -38,6 +38,7 @@ export default {
 		timersapp: './timersapp/index.js',
 		componentsapp: './componentsapp/index.js',
 		formapp: './formapp/index.js',
+		listapp: './listapp/index.js',
         vendor: ['react', 'react-dom']
     },
 	target: 'web',
@@ -57,6 +58,8 @@ export default {
 
 		// Generate HTML file that contains references to generated bundles.
 		//See here for how this works: 	https://github.com/jantimon/html-webpack-plugin/issues/218
+
+		// votingapp
 		new HtmlWebpackPlugin({
 			template: 'templates/votingapp.ejs',
 			filename: 'votingapp.html',
@@ -65,8 +68,8 @@ export default {
 			minify: minifyOptions,
 			inject: 'body',
 			trackJSToken: '21981c7d5c924151bc538a66e95cfc22'
-			/* when injecting scripts into the head, the body is not ready yet, and trying to do GetElementById doesnt work */
 		}),
+		//timesapp
 		new HtmlWebpackPlugin({
 			template: 'templates/timersapp.ejs',
 			filename: 'timersapp.html',
@@ -110,12 +113,23 @@ export default {
 			trackJSToken: '21981c7d5c924151bc538a66e95cfc22'
 			/* when injecting scripts into the head, the body is not ready yet, and trying to do GetElementById doesnt work */
 		}),
+		// list app
+		new HtmlWebpackPlugin({
+			template: 'templates/listapp.ejs',
+			filename: 'listapp.html',
+			chunks: ['vendor', 'listapp', 'common'],
+			favicon: 'favicon.ico',
+			minify: minifyOptions,
+			inject: 'body',
+			trackJSToken: '21981c7d5c924151bc538a66e95cfc22'
+			/* when injecting scripts into the head, the body is not ready yet, and trying to do GetElementById doesnt work */
+		}),
 
 		new webpack.optimize.CommonsChunkPlugin({
 			name: 'common' // Specify the common bundle's name.
 		}),
 		//  Minify JS
-		new webpack.optimize.UglifyJsPlugin({ sourceMap: true }),
+		new webpack.optimize.UglifyJsPlugin({ sourceMap: true })
 	],
     module: {
         rules: [

@@ -85,21 +85,6 @@ describe('ListApp', () => {
 				const button = wrapper.find('button').first();
 				expect(wrapper.state().items).toContain(item);
 			});
-
-			it('it should render item to the table', () => {
-				expect(wrapper.containsMatchingElement(<td>{item}</td>)).toBe(true);
-			});
-
-			it('it should clear the input element', () => {
-				const input = wrapper.find('input').first();
-				expect(input.props().value).toEqual('');
-			});
-
-			it('it should disable button', () => {
-				const button = wrapper.find('button').first();
-				expect(button.props().disabled).toBe(true);
-			});
 		});
 	});
 });
-

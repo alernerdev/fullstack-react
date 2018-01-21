@@ -12,7 +12,8 @@ export default {
         timersapp: './timersapp/index.js',
         componentsapp: './componentsapp/index.js',
         formapp: './formapp/index.js',
-        listapp: './listapp/index.js'
+        listapp: './listapp/index.js',
+        basicroutingapp: './basicrouting/index.js'
     },
 	target: 'web',
 	output: {

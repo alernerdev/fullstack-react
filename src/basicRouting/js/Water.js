@@ -1,5 +1,16 @@
 import React from 'react';
 
+const Route = ({path, component}) => {
+	const pathname = window.location.pathname;
+	console.log(`matching ${path} to ${pathname}`);
+	if (pathname.match(path)) {
+		React.createElement(component);
+	}
+	else {
+		return null;
+	}
+}
+
 export default class Water extends React.Component {
 	render() {
 		return (
@@ -14,13 +25,14 @@ export default class Water extends React.Component {
 						</a>
 					</li>
 					<li>
-						<a href='/basicroutingapp/pacific'>
+						<a href='/pacific'>
 							<code>/pacific</code>
 						</a>
 					</li>
 				</ul>
 				<hr />
-				{/* We'll insert the Route components here */}
+				<Route path='/basicroutingapp/atlantic' component={Atlantic} />
+				<Route path='/pacific' component={Pacific} />
 			</div>
 		);
 	}

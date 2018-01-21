@@ -20,4 +20,17 @@ router.route('/')
 		res.sendFile(pageName);
 	});
 
+router.route('/atlantic')
+    .get((req, res) => {
+        let pageName;
+		console.log("environment is " + process.env['NODE_ENV']);
+
+        (process.env['NODE_ENV'] == 'development') ?
+            pageName = path.join(__dirname + '/../../src/basicRoutingApp.html') :
+            pageName = path.join(__dirname + '/../../dist/basicRoutingApp.html');
+
+		console.log(`entered /basicroutingapp+  route. `);
+		res.sendFile(pageName);
+	});
+
 module.exports = router;

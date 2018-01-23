@@ -39,7 +39,8 @@ export default {
 		componentsapp: './componentsapp/index.js',
 		formapp: './formapp/index.js',
 		listapp: './listapp/index.js',
-        vendor: ['react', 'react-dom']
+		basicroutingapp: './basicrouting/index.js',
+        vendor: ['react', 'react-dom', 'react-router-dom']
     },
 	target: 'web',
 	output: {
@@ -124,7 +125,17 @@ export default {
 			trackJSToken: '21981c7d5c924151bc538a66e95cfc22'
 			/* when injecting scripts into the head, the body is not ready yet, and trying to do GetElementById doesnt work */
 		}),
-
+		// list app
+		new HtmlWebpackPlugin({
+			template: 'templates/basicroutingapp.ejs',
+			filename: 'basicroutingapp.html',
+			chunks: ['vendor', 'basicroutingapp', 'common'],
+			favicon: 'favicon.ico',
+			minify: minifyOptions,
+			inject: 'body',
+			trackJSToken: '21981c7d5c924151bc538a66e95cfc22'
+			/* when injecting scripts into the head, the body is not ready yet, and trying to do GetElementById doesnt work */
+		}),
 		new webpack.optimize.CommonsChunkPlugin({
 			name: 'common' // Specify the common bundle's name.
 		}),

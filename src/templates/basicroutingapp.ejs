@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--
+  **NOTE:** This is a template for index.html. It uses ejs and htmlWebpackPlugin to generate a different
+  index.html for each environment. htmlWebpackPlugin will dynamically add references to the scripts and styles
+  that it bundles to this file. The generated bundles have hash-based filenames, so it's necessary to add the
+  references dynamically.
+  For more info on ejs, see http://www.embeddedjs.com/. For examples of using it with htmlWebpackPlugin,
+  see https://github.com/jaketrent/html-webpack-template/blob/master/index.ejs
+  -->
+<head>
+  <!--
+    The htmlWebpackPlugin will parse the logic below so that trackJS is only added to the production version of index.html (since only webpack.config.prod.js provides the trackJS token)
+    This is an example of how to add features to index.html for only one environment.
+   -->
+	<!-- build process (webpack plugin) will inject bundled js code,
+	no need to include it -->
+
+    <!-- Embedded JS -- I want this error tracking embedded only for production HTML -->
+    <!-- when using webpack.config.dev this element wont exist -->
+    <% if (htmlWebpackPlugin.options.trackJSToken) { %>
+        <!-- BEGIN TRACKJS -->
+        <script type="text/javascript">
+            window._trackJs = {
+                token: '<%=htmlWebpackPlugin.options.trackJSToken%>'
+            };
+        </script>
+        <script type="text/javascript" src="https://cdn.trackjs.com/releases/current/tracker.js"></script>
+        <!-- END TRACKJS -->
+		<% } %>
+
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta charset="utf-8"/>
+	<title>Basic Routing</title>
+</head>
+<body>
+	<div class="main ui text container">
+		<h1 class="ui dividing centered header">Basic Routing</h1>
+		<div id="content"></div>
+	</div>
+
+</body>
+</html>

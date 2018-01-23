@@ -38,6 +38,7 @@ app.use("/timersApp", require('./routes/timersAppRoutes'));
 app.use("/componentsApp", require('./routes/componentsAppRoutes'));
 app.use("/formApp", require('./routes/formAppRoutes'));
 app.use("/listapp", require('./routes/listAppRoutes'));
+app.use("/basicRoutingApp", require('./routes/basicRoutingAppRoutes'));
 app.use("/", require('./routes/mainAppRoutes'));
 
 app.listen(port, function(err) {

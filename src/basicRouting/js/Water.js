@@ -1,9 +1,32 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import createHistory from 'history/createBrowserHistory';
 
-const history = createHistory();
+class Router extends React.component {
+	static childContextTypes = {
+		history: PropTypes.object,
+		location: PropTypes.object
+	}
 
-const Link = ({to, children}) => {
+	constructor(props) {
+		super(props);
+		this.history = createHistory();
+		this.history.listen(() => this.forceUpdate());
+	}
+
+	getChildContext() {
+		return {
+			history: this.history,
+			location: window.location
+		}
+	}
+
+	render() {
+		return this.props.children;
+	}
+}
+
+const Link = ({to, children}, {history}) => {
 	return (<a onClick={(e) => {
 					// prevent the browser to go to the server by default
 					e.preventDefault();
@@ -16,9 +39,12 @@ const Link = ({to, children}) => {
 			</a>
 		);
 }
+Link.contextTypes = {
+	history: PropTypes.oject
+}
 
-const Route = ({path, component}) => {
-	const pathname = window.location.pathname;
+const Route = ({path, component}, {location}) => {
+	const pathname = location.pathname;
 	console.log(`matching ${path} to ${pathname}`);
 	if (pathname.match(path)) {
 		return React.createElement(component);
@@ -27,35 +53,36 @@ const Route = ({path, component}) => {
 		return null;
 	}
 }
+Route.contextTypes = {
+	location: PropTypes.oject
+}
 
 export default class Water extends React.Component {
-	componentDidMount() {
-		// whenever browser url changes, force re-render
-		history.listen(() => this.forceUpdate());
-	}
-
 	render() {
 		return (
-			<div className='ui text container'>
-				<h2 className='ui dividing header'>
-					Which body of water?
-				</h2>
-				<ul>
-					<li>
-						<Link to ='/basicroutingapp/atlantic'>
-							<code>/atlantic</code>
-						</Link>
-					</li>
-					<li>
-						<Link to ='/basicroutingapp/pacific'>
-							<code>/pacific</code>
-						</Link>
-					</li>
-				</ul>
-				<hr />
-				<Route path='/basicroutingapp/atlantic' component={Atlantic} />
-				<Route path='/basicroutingapp/pacific' component={Pacific} />
+			<Router>
+				<div className='ui text container'>
+					<h2 className='ui dividing header'>
+						Which body of water?
+					</h2>
+					<ul>
+						<li>
+							<Link to ='/basicroutingapp/atlantic'>
+								<code>/atlantic</code>
+							</Link>
+						</li>
+						<li>
+							<Link to ='/basicroutingapp/pacific'>
+								<code>/pacific</code>
+							</Link>
+						</li>
+					</ul>
+					<hr />
+
+					<Route path='/basicroutingapp/atlantic' component={Atlantic} />
+					<Route path='/basicroutingapp/pacific' component={Pacific} />
 			</div>
+			</Router>
 		);
 	}
 }

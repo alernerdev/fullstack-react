@@ -1,27 +1,10 @@
 import React from 'react';
-import createHistory from 'history/createBrowserHistory';
-
-const history = createHistory();
-
-const Link = ({to, children}) => {
-	return (<a onClick={(e) => {
-					// prevent the browser to go to the server by default
-					e.preventDefault();
-					history.push(to);
-				}}
-				href={to}
-			>
-				{/*render the children this wrapper is wrapping*/}
-				{children}
-			</a>
-		);
-}
 
 const Route = ({path, component}) => {
 	const pathname = window.location.pathname;
 	console.log(`matching ${path} to ${pathname}`);
 	if (pathname.match(path)) {
-		return React.createElement(component);
+		React.createElement(component);
 	}
 	else {
 		return null;
@@ -29,11 +12,6 @@ const Route = ({path, component}) => {
 }
 
 export default class Water extends React.Component {
-	componentDidMount() {
-		// whenever browser url changes, force re-render
-		history.listen(() => this.forceUpdate());
-	}
-
 	render() {
 		return (
 			<div className='ui text container'>
@@ -42,14 +20,14 @@ export default class Water extends React.Component {
 				</h2>
 				<ul>
 					<li>
-						<Link to ='/basicroutingapp/atlantic'>
+						<a href='/basicroutingapp/atlantic'>
 							<code>/atlantic</code>
-						</Link>
+						</a>
 					</li>
 					<li>
-						<Link to ='/basicroutingapp/pacific'>
+						<a href='/basicroutingapp/pacific'>
 							<code>/pacific</code>
-						</Link>
+						</a>
 					</li>
 				</ul>
 				<hr />

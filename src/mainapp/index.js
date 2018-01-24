@@ -6,7 +6,7 @@ import '../../node_modules/semantic-ui/dist/components/menu.min.css';
 import Header from '../common/header';
 
 ReactDOM.render(
-	<Header />,
+	<Header active="main"/>,
 	document.getElementById('header')
 )
 

@@ -9,5 +9,5 @@ import Header from '../common/header';
 ReactDOM.render(
 	<Header active="timers"/>,
 	document.getElementById('header')
-)
+);
 

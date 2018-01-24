@@ -46,6 +46,7 @@ app.use("/formApp", require('./routes/formAppRoutes'));
 app.use("/listApp", require('./routes/listAppRoutes'));
 app.use("/basicRoutingApp", require('./routes/basicRoutingAppRoutes'));
 app.use("/chatSimpleApp", require('./routes/chatSimpleAppRoutes'));
+app.use("/chatAdvApp", require('./routes/chatAdvAppRoutes'));
 app.use("/", require('./routes/mainAppRoutes'));
 
 app.listen(port, function(err) {

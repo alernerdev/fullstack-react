@@ -1,52 +1,31 @@
 import React from 'react';
-
-/* classic javascript fnction without the use of "this"
-All enclosed functions are making use of "closed over" arguments,
-no need for the member variables
-*/
-function createStore(reducer, initialState) {
-  let state = initialState;
-  const listeners = [];
-
-  const subscribe = (listener) => (
-    listeners.push(listener)
-  );
-
-  const getState = () => (state);
-
-  const dispatch = (action) => {
-    state = reducer(state, action);
-    listeners.forEach(l => l());
-  };
-
-  return {
-    subscribe,
-    getState,
-    dispatch,
-  };
-}
+import {createStore} from 'redux';
+const UIDGenerator = require('uid-generator');
+const uidgen = new UIDGenerator(); // Default is a 128-bit UID encoded in base58
 
 function reducer(state, action) {
   if (action.type === 'ADD_MESSAGE') {
-    return {
-      messages: state.messages.concat(action.message),
+    const newMessage = {
+      text: action.text,
+      timestamp: Date.now(),
+      id: uidgen.generateSync() // eslint-disable-line no-undef
     };
-  } else if (action.type === 'DELETE_MESSAGE') {
+
+    return {messages: state.messages.concat(newMessage) };
+  }
+  else if (action.type === 'DELETE_MESSAGE') {
     return {
-      messages: [
-        ...state.messages.slice(0, action.index),
-        ...state.messages.slice(
-          action.index + 1, state.messages.length
-        ),
-      ],
-    };
-  } else {
+      messages:
+        state.messages.filter((m) => {
+          m.id !== action.id
+        })};
+  }
+  else {
     return state;
   }
 }
 
 const initialState = { messages: [] };
-
 const store = createStore(reducer, initialState);
 
 export default class Chat extends React.Component {
@@ -77,13 +56,13 @@ class MessageInput extends React.Component {
   onChange = (e) => {
     this.setState({
       value: e.target.value,
-    })
+    });
   };
 
   handleSubmit = () => {
     store.dispatch({
       type: 'ADD_MESSAGE',
-      message: this.state.value,
+      text: this.state.value,
     });
     this.setState({
       value: '',
@@ -111,10 +90,10 @@ class MessageInput extends React.Component {
 }
 
 class MessageView extends React.Component {
-  handleClick = (index) => {
+  handleClick = (id) => {
     store.dispatch({
       type: 'DELETE_MESSAGE',
-      index: index,
+      id: id,
     });
   };
 
@@ -126,7 +105,10 @@ class MessageView extends React.Component {
         key={index}
         onClick={() => this.handleClick(index)}
       >
-        {message}
+        <div className='text'>
+          {message.text}
+          <span className='metadata'>@{message.timestamp}</span>
+        </div>
       </div>
     ));
     return (

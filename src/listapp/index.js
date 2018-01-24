@@ -10,5 +10,5 @@ import Header from '../common/header';
 ReactDOM.render(
 	<Header active="list"/>,
 	document.getElementById('header')
-)
+);
 

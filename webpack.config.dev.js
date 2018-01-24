@@ -14,7 +14,8 @@ export default {
         formapp: './formapp/index.js',
         listapp: './listapp/index.js',
         basicroutingapp: './basicrouting/index.js',
-        chatsimpleapp: './chatsimpleapp/index.js'
+        chatsimpleapp: './chatsimpleapp/index.js',
+        chatadvapp: './chatadvapp/index.js'
     },
 	target: 'web',
 	output: {

@@ -23,18 +23,22 @@ export default class Header extends React.Component {
     choices.push({name: 'form', value: 'Form', className: 'olive item', href: '/formapp'});
     choices.push({name: 'basicrouting', value: 'Basic Routing', className: 'teal item', href: '/basicroutingapp'});
     choices.push({name: 'chatsimple', value: 'Simple Chat (Redux)', className: 'pink item', href: '/chatsimpleapp'});
+    choices.push({name: 'chatadv', value: 'Chat (Redux)', className: 'purple item', href: '/chatadvapp'});
 
     /* go over the array of menus, and which ever one is active now, mark it as such */
-    return (<div className="ui menu">
-      {choices.map(({name, value, className, href}, index) => {
-        return (
-          <a key={index}
-            className={ (name == activeName) ? className + " active" : className}
-            name={name}
-            href={href}
-            onClick={this.onMenuClick}>{value}</a>
-          );
-      })}
+    return (
+      <div className="ui inverted segment">
+        <div className="ui menu inverted secondary pointing">
+          {choices.map(({name, value, className, href}, index) => {
+            return (
+              <a key={index}
+                className={(name == activeName) ? className + " active" : className}
+                name={name}
+                href={href}
+                onClick={this.onMenuClick}>{value}</a>
+              );
+          })}
+        </div>
       </div>
     );
   }

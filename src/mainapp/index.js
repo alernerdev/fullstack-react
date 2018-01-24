@@ -8,6 +8,6 @@ import Header from '../common/header';
 ReactDOM.render(
 	<Header active="main"/>,
 	document.getElementById('header')
-)
+);
 
 

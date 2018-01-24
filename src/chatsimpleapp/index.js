@@ -9,4 +9,4 @@ import Header from '../common/header';
 ReactDOM.render(
 	<Header active="chatsimple"/>,
 	document.getElementById('header')
-)
+);

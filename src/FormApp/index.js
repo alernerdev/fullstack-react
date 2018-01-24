@@ -8,4 +8,4 @@ import Header from '../common/header';
 ReactDOM.render(
 	<Header active="form"/>,
 	document.getElementById('header')
-)
+);

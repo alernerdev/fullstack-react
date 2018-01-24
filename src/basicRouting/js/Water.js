@@ -95,7 +95,7 @@ class BlackSea extends React.Component {
                 <p>Nothing to sea here...</p>
                 <p>Redirecting in {this.state.counter} seconds...</p>
                 {
-                    (this.state.counter < 1) ? 
+                    (this.state.counter < 1) ?
                         (<Redirect to='/basicroutingapp' />) : null
                 }
             </div>

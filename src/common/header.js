@@ -21,7 +21,8 @@ export default class Header extends React.Component {
     choices.push({name: 'list', value: 'List', className: 'green item', href: '/listapp'});
     choices.push({name: 'components', value: 'Components', className: 'yellow item', href: '/componentsapp'});
     choices.push({name: 'form', value: 'Form', className: 'olive item', href: '/formapp'});
-    choices.push({name: 'basicRouting', value: 'Basic Routing', className: 'teal item', href: '/basicroutingapp'});
+    choices.push({name: 'basicrouting', value: 'Basic Routing', className: 'teal item', href: '/basicroutingapp'});
+    choices.push({name: 'chatsimple', value: 'Simple Chat (Redux)', className: 'pink item', href: '/chatsimpleapp'});
 
     /* go over the array of menus, and which ever one is active now, mark it as such */
     return (<div className="ui menu">

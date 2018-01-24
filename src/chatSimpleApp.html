@@ -1,0 +1,24 @@
+<!-- this is the dev version of my HTML where everything gets bundled into one file
+For the prod version, it gets created off a ejs template file
+-->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
+    <title>Redux Chat App</title>
+  </head>
+  <body>
+   	<div id="header"></div>
+      <h1 class='ui dividing centered header'>Chat Basics</h1>
+      <div class='ui one column center aligned page grid'>
+        <div class='column ten wide'>
+          <div id='content'></div>
+        </div>
+      </div>
+
+	  <script src="/chatsimpleapp.bundle.js"></script>
+  </body>
+</html>
+

@@ -13,7 +13,8 @@ export default {
         componentsapp: './componentsapp/index.js',
         formapp: './formapp/index.js',
         listapp: './listapp/index.js',
-        basicroutingapp: './basicrouting/index.js'
+        basicroutingapp: './basicrouting/index.js',
+        chatsimpleapp: './chatsimpleapp/index.js'
     },
 	target: 'web',
 	output: {
